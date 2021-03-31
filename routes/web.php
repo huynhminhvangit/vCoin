@@ -24,12 +24,6 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/vanghm', function () {
-    return Inertia::render('Vanghm');
-})->middleware(['auth', 'verified'])->name('vanghm');
-
-require __DIR__.'/auth.php';
+})->name('dashboard');
